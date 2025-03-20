@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clicker Game</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        #clicker {
+            padding: 20px;
+            font-size: 24px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            width: 100px;
+            height: 100px;
+        }
+        #count {
+            margin-top: 20px;
+            font-size: 32px;
+        }
+        .upgrade {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 18px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <button id="clicker">Click me!</button>
+        <div id="count">0</div>
+        <button id="autoClicker" class="upgrade" disabled>Buy Auto Clicker (50 clicks)</button>
+        <button id="upgrade10cps" class="upgrade" disabled>Buy 10 CPS (100 clicks)</button>
+        <button id="upgrade50cps" class="upgrade" disabled>Buy 50 CPS (200 clicks)</button>
+        <button id="upgrade100cps" class="upgrade" disabled>Buy 100 CPS (500 clicks)</button>
+        <!-- Add more upgrade buttons as needed -->
+    </div>
+
+    <script>
+        let count = 0;
+        const button = document.getElementById('clicker');
+        const countDisplay = document.getElementById('count');
+        const autoClickerButton = document.getElementById('autoClicker');
+        const upgrade10cpsButton = document.getElementById('upgrade10cps');
+        const upgrade50cpsButton = document.getElementById('upgrade50cps');
+        const upgrade100cpsButton = document.getElementById('upgrade100cps');
+
+        button.addEventListener('click', () => {
+            count++;
+            countDisplay.textContent = count;
+            if (count >= 50) {
+                autoClickerButton.disabled = false;
+            }
+            if (count >= 100) {
+                upgrade10cpsButton.disabled = false;
+            }
+            if (count >= 200) {
+                upgrade50cpsButton.disabled = false;
+            }
+            if (count >= 500) {
+                upgrade100cpsButton.disabled = false;
+            }
+        });
+
+        autoClickerButton.addEventListener('click', () => {
+            if (count >= 50) {
+                count -= 50;
+                countDisplay.textContent = count;
+                autoClickerButton.disabled = true;
+                setInterval(() => {
+                    count++;
+                    countDisplay.textContent = count;
+                }, 1000);
+            }
+        });
+
+        upgrade10cpsButton.addEventListener('click', () => {
+            if (count >= 100) {
+                count -= 100;
+                countDisplay.textContent = count;
+                upgrade10cpsButton.disabled = true;
+                setInterval(() => {
+                    count += 10;
+                    countDisplay.textContent = count;
+                }, 1000);
+            }
+        });
+
+        upgrade50cpsButton.addEventListener('click', () => {
+            if (count >= 200) {
+                count -= 200;
+                countDisplay.textContent = count;
+                upgrade50cpsButton.disabled = true;
+                setInterval(() => {
+                    count += 50;
+                    countDisplay.textContent = count;
+                }, 1000);
+            }
+        });
+
+        upgrade100 cpsButton.addEventListener('click', () => {
+            if (count >= 500) {
+                count -= 500;
+                countDisplay.textContent = count;
+                upgrade100cpsButton.disabled = true;
+                setInterval(() => {
+                    count += 100;
+                    countDisplay.textContent = count;
+                }, 1000);
+            }
+        });
+
+        // Add more event listeners for additional upgrades as needed
+    </script>
+</body>
+</html>
